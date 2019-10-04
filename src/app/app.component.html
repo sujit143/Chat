@@ -1,0 +1,13 @@
+<ion-app>
+  <ion-split-pane (ionSplitPaneVisible)="onSplitPaneVisibleChanged($event)" #mainsplitmenu>
+      <ion-menu #mainsidemenu style="border-right: 1px solid #13181d;">
+        <ion-content style="--background:#14202d;">
+    <chat-contacts  *ngIf="showSlidingMenu" ></chat-contacts>
+  </ion-content>
+  
+  </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+    
+  </ion-split-pane>
+
+</ion-app>

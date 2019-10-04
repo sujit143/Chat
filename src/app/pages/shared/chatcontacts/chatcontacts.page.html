@@ -1,0 +1,104 @@
+
+    <ion-header style="border-bottom: 1px solid rgb(28, 45, 74)">
+      <ion-toolbar style="--ion-toolbar-background:##14202d">
+        <ion-avatar slot="start" class="chatContactProfilePhoto">
+          <img src="https://i.pravatar.cc/90">
+        </ion-avatar>
+        <ion-label class="chatContactProfileNameText">
+          <b> Manjunath K S</b>
+        </ion-label>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()" size="small" class="chatContactProfileButtonsSmall">
+                <ion-icon slot="icon-only" name="log-out"></ion-icon>
+              </ion-button>
+            <ion-button size="small" class="chatContactProfileButtonsSmall">
+              <ion-icon slot="icon-only" name="options"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+      </ion-toolbar>
+      <ion-toolbar style="--background:#14202d;color: #fff !important;"  >
+          <ion-searchbar style="--background:#021121;color: #fff !important;"  placeholder="People or groups" showCancelButton="focus" animated></ion-searchbar>
+        </ion-toolbar>
+        <ion-segment style="--background:#14202d;color: #fff !important;"   value='chat' (ionChange)="updateSchedule($event)"> <!--  -->
+          <ion-segment-button value="chat">
+              <ion-label class="chatContactTitleText">
+            <ion-icon slot="icon-only" style="zoom: 2;" name="chatbubbles"></ion-icon><br>
+            Chats
+          </ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="groups">
+              <ion-label class="chatContactTitleText">
+                  <ion-icon slot="icon-only" style="zoom: 2;" name="contacts"></ion-icon><br>
+                  Groups
+              </ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="calls">
+              <ion-label class="chatContactTitleText">
+                  <ion-icon name="call" style="zoom: 2;"></ion-icon><br>
+                  Calls
+              </ion-label>
+          </ion-segment-button>
+        </ion-segment>
+    </ion-header>
+    
+    
+       <ion-list class="chatContactList" #chatcontacts>
+         <ion-item-sliding *ngFor='let chatcontact of chatContacts'>
+            <ion-item  style="--background:#14202d"  routerLink="./chatdetails/session/{{chatcontact.id}}">
+                <ion-avatar slot="start">
+                    <img src='{{chatcontact.photofile}}'>
+                  </ion-avatar>
+                  <ion-label>
+                    <span class="chatContactName">{{chatcontact.name}}</span> 
+                    <p  class="chatContactLatestMessage" >{{chatcontact.lastmessage}}</p>
+                  </ion-label>
+                  <ion-label  slot="end" class="chatContactDateTimeSize">
+                      {{ chatcontact.lastmessagedate}}
+                      <p [hidden]='chatcontact.unreadcount <= 0'><ion-badge class="chatContactDateTimeSize" color="primary">{{chatcontact.unreadcount}}</ion-badge></p>
+                  </ion-label>
+            </ion-item>
+            <ion-item-options>
+                <ion-item-option color="favorite"  >
+                  Favorite
+                </ion-item-option>
+                <ion-item-option color="danger" >
+                  Remove
+                </ion-item-option>
+              </ion-item-options>
+         </ion-item-sliding>
+       </ion-list>
+
+     <!--  <ion-tabs menutabs>
+
+        <ion-tab-bar slot="top">
+          <ion-tab-button tab="schedule">
+            <ion-icon name="calendar"></ion-icon>
+            <ion-label>Chats</ion-label>
+          </ion-tab-button>
+      
+          <ion-tab-button tab="speakers">
+            <ion-icon name="contacts"></ion-icon>
+            <ion-label>Groups / Projects</ion-label>
+          </ion-tab-button>
+      
+        </ion-tab-bar>
+      
+      </ion-tabs>
+-->
+<ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+  <ion-fab-button><ion-icon name="add"></ion-icon></ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button color="vimeo" >
+      <ion-icon name="logo-vimeo"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="google" >
+      <ion-icon name="logo-googleplus"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="twitter" >
+      <ion-icon name="logo-twitter"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="facebook" >
+      <ion-icon name="logo-facebook"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>

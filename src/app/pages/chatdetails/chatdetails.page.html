@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar style="--background: #021121;color: white;border-bottom: 1px solid rgb(28, 45, 74)">
+
+    <ion-segment>
+      <ion-back-button slot="start" [hidden]="isSlidingMenuVisible"></ion-back-button>
+
+      <div style="width:100%;">
+        <div style="float: left;padding-left: 25px;padding-top: 10px;">
+          <span style="font-size: 20px;font-weight: bold;">
+            Othon Mourkakos
+          </span><br />
+          <span style="font-size: 12px; float: left;color: #929292;">Last seen 2 minutes ago</span>
+        </div>
+        <div style="float: right;">
+          <ion-icon name="call"
+            style="font-size: 30px;padding-top: 10px;float: right;margin-right: 20px;color: #777777;"></ion-icon>
+          <ion-icon name="add-circle"
+            style="font-size: 30px;padding-top: 10px;float: right;margin-right: 20px;color: #777777;"></ion-icon>
+        </div>
+      </div>
+
+
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="chatDetailsContent">
+  <div class="chatwindow">
+    <ion-list lines="none" style="padding: 0px;margin-top: 20px;">
+      <ion-item style="--background:#021121" *ngFor="let item of allmessages; let i = index" class="ion-text-wrap">
+
+        <div class="OthersMessages" *ngIf="item.sentby === userId">
+          <ion-avatar slot="start" style="width: 45px;height:45px;">
+            <img src="{{item.photoURL}}">
+          </ion-avatar>
+
+          <div style="padding-left: 20px;" *ngIf="item.sentby === userId">
+            <span style="font-size: 11px;color: #fff !important;">Othon 11:45 PM <br /></span>
+            <span class="me" style="font-size: 14px;" *ngIf="!item.isImage">
+              {{item.message}}
+            </span>
+            <img src="{{item.message}}" *ngIf="item.isImage">
+          </div>
+
+        </div>
+        <div class="MyMessages" *ngIf="item.sentby != userId">
+          <div slot="end">
+            <span style="font-size: 11px;float: right;padding-right: 3%;color: #fff !important;">11:45 PM</span><br />
+            <span class="you" style="font-size: 14px;" *ngIf="!isImage">{{item.message}}</span>
+            <img src="{{item.message}}" *ngIf="item.isImage">
+          </div>
+        </div>
+        
+        <!-- <img src="{{base64Image}}" *ngIf="isImage"/> -->
+        
+      </ion-item>
+    </ion-list>    
+  </div> 
+</ion-content>
+<ion-footer class="item-input-inset" style="--background:#14202d;color: #fff !important;" >
+    <ion-item style="--background:#14202d;color: #fff !important;">
+        <ion-input [(ngModel)]="message" (keyup.enter)="sentTextmsg(message)" style="--background:#14202d;color: #fff !important;"  placeholder="typing" animated></ion-input>
+        <button ion-button icon-only item-right (click)="presentActionSheet()">
+            <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+        </button>
+    </ion-item>
+</ion-footer>

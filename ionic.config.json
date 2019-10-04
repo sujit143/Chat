@@ -1,0 +1,7 @@
+{
+  "name": "zoomteams",
+  "type": "angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
